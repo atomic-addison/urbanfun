@@ -1,0 +1,31 @@
+{
+
+  "description": "Urbanfun is a browser extention bring more funcitonality to Urbandead",
+  "manifest_version": 2,
+  "name": "urbanfun",
+  "version": "1.0",
+  "homepage_url": "https://source.dog",
+  "icons": {
+    "48": "icons/ud.png"
+  },
+  "permissions": [
+    "activeTab", "tabs", "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://*.urbandead.com/*"],
+      "js": [
+        "content_scripts/content.js"
+      ],
+      "css" : [
+        "content_styles/map.css",
+        "content_styles/style.css"
+      ]
+    }
+  ],
+  "browser_action": {
+    "default_icon": "icons/ud.png",
+    "default_title": "urbanfun"
+  }
+
+}
