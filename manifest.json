@@ -26,6 +26,8 @@
   "browser_action": {
     "default_icon": "icons/ud.png",
     "default_title": "urbanfun"
+  },
+  "background": {
+    "scripts": ["background.js"]
   }
-
 }

@@ -1,0 +1,830 @@
+/******************General Formatting******************/
+			td.gp				{ border: 0px; }
+/*immediate warning*/	div.immediateWarning		{ display: none; }
+/*version warning*/	div.versionWarning		{ display: none; width: 100%; text-align: right; font-size: x-small; }
+			div.versionWarning:before	{ display: none; content: "Update: "; color: #F66; }
+			div.versionWarning:after	{ display: none; content: "Version 0.58 of the UDToolbar is now available at http://udtoolbar.mozdev.org"; color: #FFF; }
+
+/*health labels*/	div.gt table td > span 	{ font-size:x-small; text-decoration:none; border:1px solid #000; position:relative; bottom:2px; left:-3px; padding:0px 3px; z-index:90; }
+/*health label colors*/	span.hpFull		{ background:#555; color:#fff;}
+			span.hp5 		{ background:#5dd844; color:#000;}
+			span.hp4		{ background:#91e24e; color:#000;}
+			span.hp3		{ background:#f1f35f; color:#000;}
+			span.hp2		{ background:#dfbe00; color:#000;}
+			span.hp1		{ background:#aa6000; color:#000;}
+			span.hp0		{ background:#b20000; color:#000;}
+			span.inf		{ border-color: #00FF00 !important; }
+
+/*menu formatting*/	ul.menu2					{ display: none; position: absolute; width: 100px; z-index: 99; }
+			ul.menu, ul.menu ul, ul.menu2, ul.menu2 ul	{ opacity: 0.85; margin: 0px; padding: 0px; background: #898; color: #efe; white-space: nowrap; }
+			ul.menu, ul.menu ul				{ opacity: 1; background-color: transparent; }
+			ul.menu li					{ white-space: nowrap; }
+			ul.menu li li, ul.menu2 li			{ border-left: 1px solid #232; border-right: 1px solid #232; }
+			ul.menu li li:first-child, ul.menu2 li:first-child	{ border-top: 1px solid #232; }
+			ul.menu li li:last-child, ul.menu2 li:last-child{ border-bottom: 1px solid #232; }
+			ul.menu li, ul.menu2 li				{ list-style-type: none; position: relative; padding: 0px; margin: 0px; z-index: 101; }
+			ul.menu > li					{ opacity: 0.85; }
+			ul.menu li > ul					{ background: #898; display: none; position: absolute; bottom: 0px; left: 125px; }
+			ul.menu2 li > ul				{ opacity: 1; position: absolute; top: 0px; left: 99px; display: none; }
+			ul.menu li > ul > li > ul			{ position: absolute; bottom: 0px; left: 60px; }
+			ul.menu li:hover, ul.menu2 li:hover		{ background: #232; color: #bcb; }
+			ul.menu li:hover > ul, ul.menu2 li:hover > ul	{ display: block; }
+			ul.menu input.m, ul.menu2 input.m		{ background: transparent; border: 0px; padding: 0px; width: 100%; text-align:left; height: 22px; }
+			ul.menu input.m:hover, ul.menu2 input.m:hover	{ color: #898; }
+			ul.menu2 li > ul, ul.menu li > ul { width: 200px; }
+
+/*menu labels*/		li.actionsLabel:before	{ content: "Possible Actions>"; }
+			li.attackLabel:before	{ content: "Attack With>"; }
+			li.searchLabel:before	{ content: "Search>"; }
+
+/*DEM request window*/	div.requestDiv	{ display:none; opacity:0.9; background-color: #565; position: fixed; left:10%; top:10%; z-index:1000; padding:10px; border:4px solid #454;}
+/*Request button*/	div.requestDiv input	{ margin-top: 8px; }
+
+/*Target text*/		span.target	{ white-space: nowrap; color: #f99; }
+			span.target:hover, div.gt a:hover	{ background: #232; }
+
+/*name tables*/		div.gt table	{ width:100%; }
+/*activity titles*/	#leastActive,#mostActive{ padding-left: 4px; background-image: none !important; background-color: #454; border-bottom: 1px solid #232; }
+			#leastActive:after	{ content: "Least active characters"; }
+			#mostActive:after	{ content: "Most active characters"; }
+			div.gt div.carrotClosed:before	{ content: "> "; color: #000; }
+			div.gt div.carrotOpen:before	{ content: "v "; color: #000; }
+
+/******************Bar Graph Formatting******************/
+/*stat bar table*/	table.stattable, table.stattable table, table.statstable	{ width: 100%; border-spacing: 0px; }
+			table.stattable td, table.statstable td	{ padding: 0px; }
+/*graph BG colors*/	table.stattable table, td.iconCell	{ background-color:#555555; }
+/*icon dimenisions*/	div.staticons, div.staticonbackground	{ width: 13px; height: 13px; border: 1px solid black; }
+			div.staticons	{ position: absolute; }
+/*notch borders*/	div.notchBorders	{ border-bottom: solid 1px black; border-right: solid 1px black; border-top: solid 1px black; }
+/*notch backgrounds*/	div.barBackground	{ width:100%; height:7px; }
+/*item labels*/		table.stattable span	{ position: relative; bottom: 5px; left: 9px; margin-right: -20px; }
+			table.stattable span.highlight	{ color: #FF9999; }
+			table.stattable span	{ font-size:x-small; color:#fff; text-decoration:none; background:#555; border:1px solid #000; padding:0px 3px; }
+
+/*Stat icons & colors*/	#HPtable div.staticons		{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/staticons/HPIcon.gif'); }
+			#HPDeadtable div.staticons	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/staticons/HPIconDead.gif'); }
+			#HPInfectedtable div.staticons	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/staticons/HPIconInfected.gif'); }
+			#HPtable div.staticonbackground, #HPtable div.barBackground, #HPDeadtable div.staticonbackground, #HPDeadtable div.barBackground, #HPInfectedtable div.staticonbackground, #HPInfectedtable div.barBackground	{ background-color: #CC0000; }
+			#APtable div.staticons		{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/staticons/APIcon.gif'); }
+			#APtable div.staticonbackground, #APtable div.barBackground	{ background-color: #00CC00; }
+			#XPtable div.staticons		{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/staticons/XPIcon.gif'); }
+			#XPtable div.staticonbackground, #XPtable div.barBackground	{ background-color: #0000CC; }
+			#INVtable div.staticons		{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/staticons/INVIcon.gif'); }
+			#INVtable div.staticonbackground, #INVtable div.barBackground	{ background-color: #CCCC00; }
+
+/******************Inventory formatting******************/
+/*inventory carrot*/	#invCarrot			{ width: 18px; height: 34px; }
+			p.gt				{ position: relative; }
+			p.gt > div			{ float: right; margin-top: -34px; }
+/*closed carrot*/	p.gt div.carrotClosed		{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/carrotclosed.gif'); }
+/*open carrot*/		p.gt div.carrotOpen		{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/carrotopen.gif'); }
+
+/*general inventory*/	table.inventory			{ background-color: #232; padding: 0px; border-spacing: 1px; }
+
+/*full inventory*/	#inventoryTable			{ position: absolute; z-index: 100; width: 331px; bottom: -20px; left: 295px; opacity: 0.9; }
+			#inventoryTable	td		{ background-color: #565; width: 32px; height: 32px; }
+			#inventoryTable td.itotal	{ background-color: #232 !important; text-align: right; }
+
+/*inventory items*/	table.inventory input		{ background-color: #898; border:0px; background-repeat: no-repeat; width: 30px; height: 30px; }
+			table.inventory input:hover	{ background-color: #232; }
+/*item cells*/		td.item:hover			{ background-color: #898 !important; }
+/*ammo counts*/		table.inventory span.ammoCount	{ font-size: x-small; color: #fff; text-decoration: none; background: #555; border: 1px solid #000; padding: 0px 3px; position: absolute; right: -2px; bottom: -2px; z-index: 1; }
+/*item sub container*/	table.inventory td > div > div	{ position: relative; }
+/*total space label*/	table.inventory td > span	{ display: none; }
+			table.inventory td > span:before{ display: none; }
+
+/*Drop button & info*/	#inventoryTable div:hover div, #inventoryTable div:hover input.dropButton	{ display: block; }
+
+/*Item info*/		#inventoryTable div.itemInfo		{ display: none; position: absolute; bottom: 179px; left: 295px; padding: 1px; width: 329px; background-color: #232; z-index: 2; }
+			#inventoryTable div.itemTitle		{ background-color: #898; width: 327px; color: #000; padding-left: 2px; white-space: nowrap; }
+			#inventoryTable div.itemDesc		{ padding-left: 5px; padding-right: 5px; }
+
+/*Item drop button*/	input.dropButton			{ display: none; }
+			#inventoryTable input.dropButton	{ position: absolute; background-color: transparent; background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/drop.gif'); background-position: center center; background-repeat: no-repeat; width: 13px; height: 13px; right: -2px; top: -2px; z-index: 1; }
+			#inventoryTable input.dropButton:hover	{ background-color: #AAA; }
+
+/*Pistol*/		div.ib input.itemButton	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/pistol.gif'); width: 63px !important; }
+			#inventoryTable div.ib div.itemTitle:before	{ content: "Pistol - 4% encumbrance"; }
+			#inventoryTable div.ib div.itemDesc:before	{ content: "The pistol holds a maximum of 6 rounds and does 5 damage per shot. To fire the pistol mouse over the target's name and use the context menu."; }
+/*Shotgun*/		div.is input.itemButton	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/shotgun.gif'); width: 63px !important; }
+			#inventoryTable div.is div.itemTitle:before	{ content: "Shotgun - 6% encumbrance"; }
+			#inventoryTable div.is div.itemDesc:before	{ content: "The shotgun holds a maximum of 2 shells and does 10 damage per shot. To fire the shotgun mouse over the target's name and use the context menu."; }
+/*Flare*/		div.ic input.itemButton	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/flaregun.gif'); }
+			#inventoryTable div.ic div.itemTitle:before	{ content: "Flare Gun - 2% encumbrance"; }
+			#inventoryTable div.ic div.itemDesc:before	{ content: "The flare gun is a single use item and does 15 damage on impact. To fire the flare gun mouse over the target's name and use the context menu."; }
+/*Syringe*/		div.iz input.itemButton	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/syringe.gif'); }
+			#inventoryTable div.iz div.itemTitle:before	{ content: "Necrotech Revivification Syringe - 2% encumbrance"; }
+			#inventoryTable div.iz div.itemDesc:before	{ content: "Using the Syringe will revive a standing zombie. 10 action points are required to use this item. To target a zombie use the 'zombie' context menu."; }
+/*DNA Extractor*/	div.iw input.itemButton	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/dnaextractor.gif'); }
+			#inventoryTable div.iw div.itemTitle:before	{ content: "DNA Extractor - 4% encumbrance"; }
+			#inventoryTable div.iw div.itemDesc:before	{ content: "When used the DNA Extractor will display the zombie's name and tag them for the NecroNet. If the zombie's cortext is damaged you will be warned not to revive. To target a zombie use the 'zombie' context menu."; }
+/*FAK*/			div.ih input.itemButton	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/medikit.gif'); }
+			#inventoryTable div.ih div.itemTitle:before	{ content: "First Aid Kit - 2% encumbrance"; }
+			#inventoryTable div.ih div.itemDesc:before	{ content: "Using this item will restore 5 hit points to any player, 10 hit points if you possess the First Aid skill and 15 if you have the Surgery skill and are currently in a powered hospital. Click to use on yourself. To target others use the user context menus."; }
+/*Clip */		div.ik input.itemButton	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/pclip.gif'); }
+			#inventoryTable div.ik div.itemTitle:before	{ content: "Pistol Clip - 2% encumbrance"; }
+			#inventoryTable div.ik div.itemDesc:before	{ content: "The pistol clip contains 6 bullets. Click to reload a pistol."; }
+/*Shells*/		div.ir input.itemButton	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/sshell.gif'); }
+			#inventoryTable div.ir div.itemTitle:before	{ content: "Shotgun Shell - 2% encumbrance"; }
+			#inventoryTable div.ir div.itemDesc:before	{ content: "A single shotgun shell. Click to load it into a shotgun."; }
+/*Fire axe*/		div.io input.itemButton	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/fireaxe.gif'); }
+			#inventoryTable div.io div.itemTitle:before	{ content: "Fire Axe - 6% encumbrance"; }
+			#inventoryTable div.io div.itemDesc:before	{ content: "The fire axe does 3 points of damage on a successful hit. To hit with the fire axe mouse over the target's name and use the context menu."; }
+/*Crowbar */		div.id input.itemButton	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/crowbar.gif'); }
+			#inventoryTable div.id div.itemTitle:before	{ content: "Crowbar - 4% encumbrance"; }
+			#inventoryTable div.id div.itemDesc:before	{ content: "The crowbar does 2 points of damage on a successful hit. Crowbars are twice as likely as other weapons to damage a barricade. To hit with the crowbar mouse over the target's name and use the context menu."; }
+/*Baseball Bat*/	div.ie input.itemButton	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/bat.gif'); }
+			#inventoryTable div.ie div.itemTitle:before	{ content: "Baseball Bat"; }
+			#inventoryTable div.ie div.itemDesc:before	{ content: "The base ball bat does 2 points of damage on a successful hit. To hit with the baseball bat mouse over the target's name and use the context menu."; }
+/*Length of Pipe*/	div.ip input.itemButton	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/pipe.gif'); }
+			#inventoryTable div.ip div.itemTitle:before	{ content: "Length of Pipe"; }
+			#inventoryTable div.ip div.itemDesc:before	{ content: "The pipe does 2 points of damage on a successful hit. To hit with the pipe mouse over the target's name and use the context menu."; }
+/*Kitchen Knife*/	div.ig input.itemButton	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/knife.gif'); }
+			#inventoryTable div.ig div.itemTitle:before	{ content: "Kitchen Knife - 2% encumbrance"; }
+			#inventoryTable div.ig div.itemDesc:before	{ content: "The knife does 2 points of damage on a successful hit. To hit with the knife mouse over the target's name and use the context menu."; }
+/*Flak Jacket*/		div.if input.itemButton	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/flak.gif'); }
+			#inventoryTable div.if div.itemTitle:before	{ content: "Flak Jacket - 2% encumbrance"; }
+			#inventoryTable div.if div.itemDesc:before	{ content: "This jacket grants 20 percent damage reduction against firearms. Activation is not required."; }
+/*GPS*/			div.ia input.itemButton	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/gps.gif'); }
+			#inventoryTable div.ia div.itemTitle:before	{ content: "GPS Unit 2% encumbrance"; }
+			#inventoryTable div.ia div.itemDesc:before	{ content: "Displays your current coordinates. Activation is not required."; }
+/*Cell phone*/		div.ij input.itemButton	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/phone.gif'); }
+			#inventoryTable div.ij div.itemTitle:before	{ content: "Mobile Phone - 2% encumbrance"; }
+			#inventoryTable div.ij div.itemDesc:before	{ content: "The mobile phone can be used to text messages others in your contact list provided they have a mobile phone as well, you are on their contact list, and the suburb you are in has an operating mobile phone mast."; }
+/*Generator*/		div.iaa input.itemButton{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/generator.gif'); }
+			#inventoryTable div.iaa div.itemTitle:before	{ content: "Portable Generator - 20% encumbrance"; }
+			#inventoryTable div.iaa div.itemDesc:before	{ content: "Used to provide power to buildings. This will enable mobile phone masts, NecroNet access and radio transmitters, increase search rates and allows surgery in hospitals. Click to set up in your current location."; }
+/*Fuel Can*/		div.ii input.itemButton	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/fuelcan.gif'); }
+			#inventoryTable div.ii div.itemTitle:before	{ content: "Fuel Can - 10% encumbrance"; }
+			#inventoryTable div.ii div.itemDesc:before	{ content: "This is used to fuel portable generators. Click to refuel an empty generator in your current location."; }
+/*Wire Cutters*/	div.iq input.itemButton	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/wirecutter.gif'); }
+			#inventoryTable div.iq div.itemTitle:before	{ content: "Wire Cutters - 4% encumbrance"; }
+			#inventoryTable div.iq div.itemDesc:before	{ content: "Formerly used to cut through wire fences, padlocks and chains. This item serves no current purpose."; }
+/*Spraycan */		div.ix input.itemButton	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/spraycan.gif'); }
+			#inventoryTable div.ix div.itemTitle:before	{ content: "Spray Can - 2% encumbrance"; }
+			#inventoryTable div.ix div.itemDesc:before	{ content: "Leave graffiti in your current location for all others to see. To use this item enter text in the 'Graffiti' text area."; }
+/*Beer */		div.it input.itemButton	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/beer.gif'); }
+			#inventoryTable div.it div.itemTitle:before	{ content: "Bottle of Beer - 2% encumbrance"; }
+			#inventoryTable div.it div.itemDesc:before	{ content: "Drink this to restore 1 hit point."; }
+/*Wine Bottle*/		div.iu input.itemButton	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/wine.gif'); }
+			#inventoryTable div.iu div.itemTitle:before	{ content: "Bottle of Wine - 4% encumbrance"; }
+			#inventoryTable div.iu div.itemDesc:before	{ content: "Drink this to restore 1 hit point."; }
+/*Book*/		div.il input.itemButton	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/book.gif'); }
+			#inventoryTable div.il div.itemTitle:before	{ content: "Book"; }
+			#inventoryTable div.il div.itemDesc:before	{ content: "Reading this book may provide you with new information to increase your experience."; }
+/*Poetry Book*/		div.iy input.itemButton	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/poetry.gif'); }
+			#inventoryTable div.iy div.itemTitle:before	{ content: "Poetry Book"; }
+			#inventoryTable div.iy div.itemDesc:before	{ content: "Gives a short piece of poetry, usually pertaining to apocalypse, death, zombies, etc."; }
+/*Newspaper*/		div.in input.itemButton	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/newspaper.gif'); }
+			#inventoryTable div.in div.itemTitle:before	{ content: "Newspaper"; }
+			#inventoryTable div.in div.itemDesc:before	{ content: "Gives a short news story to read, sometimes providing some back story on the city, NecroTech, and the zombie plague."; }
+/*Crucifix*/		div.im input.itemButton	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/crucifix.gif'); }
+			#inventoryTable div.im div.itemTitle:before	{ content: "Crucifix"; }
+			#inventoryTable div.im div.itemDesc:before	{ content: "This item is entirely useless."; }
+/*Radio Transmitter*/	div.icc input.itemButton { background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/transmitter.gif'); }
+			#inventoryTable div.icc div.itemTitle:before	{ content: "Radio Transmitter - 20% encumbrance"; }
+			#inventoryTable div.icc div.itemDesc:before	{ content: "A radio transmitter used to broadcast messages to others. Click to place in your current location."; }
+/*Portable Radio*/	div.ibb input.itemButton { background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/radio.gif'); width: 162px !important; }
+			#inventoryTable div.ibb div.itemTitle:before	{ content: "Portable Radio - 4% encumbrance"; }
+			#inventoryTable div.ibb div.itemDesc:before	{ content: "A portable radio that can be tuned to receive local broadcasts between 26.00 and 29.00 MHz. Click to tune the radio to another frequency."; }
+/*Binoculars*/		div.iff input.itemButton, #binoculars { background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/binoculars.gif'); }
+			#inventoryTable div.iff div.itemTitle:before	{ content: "Binoculars - 4% encumbrance"; }
+			#inventoryTable div.iff div.itemDesc:before	{ content: "Used to see the suroundings from the roof of a tall building. To use the binoculars mouse over the icon on the map and select a direction."; }
+
+/*decorations sharing the default image I0-I79 !(I39=Skull) */
+			#inventoryTable div.iI0 input.itemButton,  #inventoryTable div.iI1 input.itemButton,  #inventoryTable div.iI2 input.itemButton,  #inventoryTable div.iI3 input.itemButton,  #inventoryTable div.iI4 input.itemButton,  #inventoryTable div.iI5 input.itemButton,  #inventoryTable div.iI6 input.itemButton,  #inventoryTable div.iI7 input.itemButton,  #inventoryTable div.iI8 input.itemButton,  #inventoryTable div.iI9 input.itemButton,
+			#inventoryTable div.iI10 input.itemButton, #inventoryTable div.iI11 input.itemButton, #inventoryTable div.iI12 input.itemButton, #inventoryTable div.iI13 input.itemButton, #inventoryTable div.iI14 input.itemButton, #inventoryTable div.iI15 input.itemButton, #inventoryTable div.iI16 input.itemButton, #inventoryTable div.iI17 input.itemButton, #inventoryTable div.iI18 input.itemButton, #inventoryTable div.iI19 input.itemButton,
+			#inventoryTable div.iI20 input.itemButton, #inventoryTable div.iI21 input.itemButton, #inventoryTable div.iI22 input.itemButton, #inventoryTable div.iI23 input.itemButton, #inventoryTable div.iI24 input.itemButton, #inventoryTable div.iI25 input.itemButton, #inventoryTable div.iI26 input.itemButton, #inventoryTable div.iI27 input.itemButton, #inventoryTable div.iI28 input.itemButton, #inventoryTable div.iI29 input.itemButton,
+			#inventoryTable div.iI30 input.itemButton, #inventoryTable div.iI31 input.itemButton, #inventoryTable div.iI32 input.itemButton, #inventoryTable div.iI33 input.itemButton, #inventoryTable div.iI34 input.itemButton, #inventoryTable div.iI35 input.itemButton, #inventoryTable div.iI36 input.itemButton, #inventoryTable div.iI37 input.itemButton, #inventoryTable div.iI38 input.itemButton,
+			#inventoryTable div.iI40 input.itemButton, #inventoryTable div.iI41 input.itemButton, #inventoryTable div.iI42 input.itemButton, #inventoryTable div.iI43 input.itemButton, #inventoryTable div.iI44 input.itemButton, #inventoryTable div.iI45 input.itemButton, #inventoryTable div.iI46 input.itemButton, #inventoryTable div.iI47 input.itemButton, #inventoryTable div.iI48 input.itemButton, #inventoryTable div.iI49 input.itemButton,
+            #inventoryTable div.iI50 input.itemButton, #inventoryTable div.iI51 input.itemButton, #inventoryTable div.iI52 input.itemButton, #inventoryTable div.iI53 input.itemButton, #inventoryTable div.iI54 input.itemButton, #inventoryTable div.iI55 input.itemButton, #inventoryTable div.iI56 input.itemButton, #inventoryTable div.iI57 input.itemButton, #inventoryTable div.iI58 input.itemButton, #inventoryTable div.iI59 input.itemButton,
+			#inventoryTable div.iI60 input.itemButton, #inventoryTable div.iI61 input.itemButton, #inventoryTable div.iI62 input.itemButton, #inventoryTable div.iI63 input.itemButton, #inventoryTable div.iI64 input.itemButton, #inventoryTable div.iI65 input.itemButton, #inventoryTable div.iI66 input.itemButton, #inventoryTable div.iI67 input.itemButton, #inventoryTable div.iI68 input.itemButton, #inventoryTable div.iI69 input.itemButton,
+			#inventoryTable div.iI70 input.itemButton, #inventoryTable div.iI71 input.itemButton, #inventoryTable div.iI72 input.itemButton, #inventoryTable div.iI73 input.itemButton, #inventoryTable div.iI74 input.itemButton, #inventoryTable div.iI75 input.itemButton, #inventoryTable div.iI76 input.itemButton, #inventoryTable div.iI77 input.itemButton, #inventoryTable div.iI78 input.itemButton, #inventoryTable div.iI79 input.itemButton,
+					#museum-piece { background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/decoration.gif'); }
+
+
+/*
+ *
+ *	undiscovered (Items ending in zero)
+ *
+ */
+
+/*unknown decoration*/
+			#inventoryTable div.iI0 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+/*unknown decoration*/
+			#inventoryTable div.iI10 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+/*unknown decoration*/
+			#inventoryTable div.iI20 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+/*unknown decoration*/
+			#inventoryTable div.iI30 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+/*unknown decoration*/
+			#inventoryTable div.iI40 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+/*unknown decoration*/
+			#inventoryTable div.iI50 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+/*unknown decoration*/
+			#inventoryTable div.iI60 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+/*unknown decoration*/
+			#inventoryTable div.iI70 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+			#inventoryTable div.iI0 div.itemDesc:before, #inventoryTable div.iI10 div.itemDesc:before,
+			#inventoryTable div.iI20 div.itemDesc:before, #inventoryTable div.iI30 div.itemDesc:before,
+			#inventoryTable div.iI40 div.itemDesc:before, #inventoryTable div.iI50 div.itemDesc:before,
+			#inventoryTable div.iI60 div.itemDesc:before, #inventoryTable div.iI70 div.itemDesc:before
+					{ content: "Museum pieces may be installed in buildings as a decoration."; }
+
+/*
+ *
+ *	undiscovered (Single Didget Items)
+ *
+ */
+
+/*unknown decoration*/
+			#inventoryTable div.iI1 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+/*unknown decoration*/
+			#inventoryTable div.iI2 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+/*unknown decoration*/
+			#inventoryTable div.iI3 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+/*unknown decoration*/
+			#inventoryTable div.iI4 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+/*unknown decoration*/
+			#inventoryTable div.iI5 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+/*unknown decoration*/
+			#inventoryTable div.iI6 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+/*unknown decoration*/
+			#inventoryTable div.iI7 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+/*unknown decoration*/
+			#inventoryTable div.iI8 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+/*unknown decoration*/
+			#inventoryTable div.iI9 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+			#inventoryTable div.iI1 div.itemDesc:before, #inventoryTable div.iI2 div.itemDesc:before,
+			#inventoryTable div.iI3 div.itemDesc:before, #inventoryTable div.iI4 div.itemDesc:before,
+			#inventoryTable div.iI5 div.itemDesc:before, #inventoryTable div.iI6 div.itemDesc:before,
+			#inventoryTable div.iI7 div.itemDesc:before, #inventoryTable div.iI8 div.itemDesc:before,
+			#inventoryTable div.iI9 div.itemDesc:before	{ content: "Museum pieces may be installed in buildings as a decoration."; }
+
+/*
+ *
+ *	Stuffed animals
+ *
+
+	1. Stuffed alligator	[I11]
+	2. Stuffed bear			[I15]
+	3. Stuffed crocodile	[I12]
+	4. Stuffed eagle		[I16]
+	5. Stuffed fish			[I18]
+	6. Stuffed lion head	[I13]
+	7. Stuffed monkey			?[I14]?
+	8. Stuffed moose head	[I19]
+	9. Stuffed tiger head	[I17]
+
+ *
+ */
+
+/*stuffed alligator*/
+			#inventoryTable div.iI11 div.itemTitle:before	{ content: "stuffed alligator - 20% encumbrance"; }
+
+/*stuffed crocodile*/
+			#inventoryTable div.iI12 div.itemTitle:before	{ content: "Stuffed crocodile - 20% encumbrance"; }
+
+/*stuffed lion head*/
+			#inventoryTable div.iI13 div.itemTitle:before	{ content: "Stuffed lion head - 20% encumbrance"; }
+
+/*Stuffed monkey*/
+			#inventoryTable div.iI14 div.itemTitle:before	{ content: "Stuffed monkey - 20% encumbrance"; }
+
+/*stuffed bear*/
+			#inventoryTable div.iI15 div.itemTitle:before	{ content: "Stuffed bear - 20% encumbrance"; }
+
+/*stuffed eagle*/
+			#inventoryTable div.iI16 div.itemTitle:before	{ content: "Stuffed eagle - 20% encumbrance"; }
+
+/*stuffed tiger head*/
+			#inventoryTable div.iI17 div.itemTitle:before	{ content: "Stuffed tiger head - 20% encumbrance"; }
+
+/*stuffed fish*/
+			#inventoryTable div.iI18 div.itemTitle:before	{ content: "Stuffed fish - 20% encumbrance"; }
+
+/*stuffed moose head*/
+			#inventoryTable div.iI19 div.itemTitle:before	{ content: "Stuffed moose head - 20% encumbrance"; }
+
+			#inventoryTable div.iI11 div.itemDesc:before, #inventoryTable div.iI12 div.itemDesc:before,
+			#inventoryTable div.iI13 div.itemDesc:before, #inventoryTable div.iI14 div.itemDesc:before,
+			#inventoryTable div.iI15 div.itemDesc:before, #inventoryTable div.iI16 div.itemDesc:before,
+			#inventoryTable div.iI17 div.itemDesc:before, #inventoryTable div.iI18 div.itemDesc:before,
+			#inventoryTable div.iI19 div.itemDesc:before	{ content: "Stuffed animals may be installed in buildings as a decoration."; }
+
+
+/*
+ *
+ *	Sculptures
+ *
+
+	1. African sculpture		[I25]
+	2. Conceptual sculpture		[I27]
+	3. Cracked sculpture		[I28]
+	4. Cubist sculpture			[I21]
+	5. European sculpture		[I24]
+	6. Headless statue			[I29]
+	7. Impressionist sculpture 	[I23]
+
+	0. Unknown/Unused			[I22]
+	0. Unknown/Unused			[I26]
+
+ *
+ */
+
+/*cubist sculpture*/
+			#inventoryTable div.iI21 div.itemTitle:before	{ content: "Cubist sculpture - 20% encumbrance"; }
+
+/*unknown decoration*/
+			#inventoryTable div.iI22 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+/*impressionist sculpture*/
+			#inventoryTable div.iI23 div.itemTitle:before	{ content: "Impressionist sculpture - 20% encumbrance"; }
+
+/*European sculpture*/
+			#inventoryTable div.iI24 div.itemTitle:before	{ content: "European sculpture - 20% encumbrance"; }
+
+/*African sculpture*/
+			#inventoryTable div.iI25 div.itemTitle:before	{ content: "African sculpture - 20% encumbrance"; }
+
+/*unknown decoration*/
+			#inventoryTable div.iI26 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+/*conceptual sculpture*/
+			#inventoryTable div.iI27 div.itemTitle:before	{ content: "Conceptual sculpture - 20% encumbrance"; }
+
+/*cracked sculpture*/
+			#inventoryTable div.iI28 div.itemTitle:before	{ content: "Cracked sculpture - 20% encumbrance"; }
+
+/*headless statue*/
+			#inventoryTable div.iI29 div.itemTitle:before	{ content: "Headless statue - 20% encumbrance"; }
+
+			#inventoryTable div.iI21 div.itemDesc:before, #inventoryTable div.iI22 div.itemDesc:before,
+			#inventoryTable div.iI23 div.itemDesc:before, #inventoryTable div.iI24 div.itemDesc:before,
+			#inventoryTable div.iI25 div.itemDesc:before, #inventoryTable div.iI26 div.itemDesc:before,
+			#inventoryTable div.iI27 div.itemDesc:before, #inventoryTable div.iI28 div.itemDesc:before,
+			#inventoryTable div.iI29 div.itemDesc:before	{ content: "Sculptures may be installed in buildings as a decoration."; }
+
+/*
+ *
+ *	Skeletons
+ *
+
+	1. Bird Skeleton	[I31]
+	2. Fish Skeleton	[I34]
+	3. Human Skeleton	[I32]
+	4. Lizard Skeleton	[I35]
+	5. Monkey Skeleton	[I33]
+	6. Skull			[I39]
+
+	0. Unknown/Unused	[I36]
+	0. Unknown/Unused	[I37]
+	0. Unknown/Unused	[I38]
+ *
+ */
+
+/*bird skeleton*/
+			#inventoryTable div.iI31 div.itemTitle:before	{ content: "Bird skeleton - 20% encumbrance"; }
+
+/*human skeleton*/
+			#inventoryTable div.iI32 div.itemTitle:before	{ content: "Human skeleton - 20% encumbrance"; }
+
+/*monkey skeleton*/
+			#inventoryTable div.iI33 div.itemTitle:before	{ content: "Monkey skeleton - 20% encumbrance"; }
+
+/*fish skeleton*/
+			#inventoryTable div.iI34 div.itemTitle:before	{ content: "Fish Skeleton - 20% encumbrance"; }
+
+/*lizard skeleton*/
+			#inventoryTable div.iI35 div.itemTitle:before	{ content: "Lizard Skeleton - 20% encumbrance"; }
+
+/*unknown decoration*/
+			#inventoryTable div.iI36 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+/*unknown decoration*/
+			#inventoryTable div.iI37 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+/*unknown decoration*/
+			#inventoryTable div.iI38 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+			#inventoryTable div.iI31 div.itemDesc:before, #inventoryTable div.iI32 div.itemDesc:before,
+			#inventoryTable div.iI33 div.itemDesc:before, #inventoryTable div.iI34 div.itemDesc:before,
+			#inventoryTable div.iI35 div.itemDesc:before, #inventoryTable div.iI36 div.itemDesc:before,
+			#inventoryTable div.iI37 div.itemDesc:before, #inventoryTable div.iI38 div.itemDesc:before
+				{ content: "Skeletons may be installed in buildings as a decoration."; }
+
+/*skull*/
+			#inventoryTable div.iI39 input.itemButton		{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/skull.gif'); }
+			#inventoryTable div.iI39 div.itemTitle:before	{ content: "Skull - 6% encumbrance"; }
+			#inventoryTable div.iI39 div.itemDesc:before	{ content: "Skulls are the lightest decorative item found in Malton and may be installed in buildings as a thought provoking source of inspiration."; }
+/*skull*/
+
+
+/*
+ *
+ *	Tapestries
+ *
+
+   1. Dark tapestry			[I45]
+   2. Faded tapestry		[I44]
+   3. French tapestry		[I42]
+   4. Greek tapestry		[I41]
+   5. Historical tapestry	[I48]
+   6. Mediaeval tapestry	[I46]
+   7. Mouldering tapestry	[I43]
+   8. Print of a tapestry		[I00]
+   9. Torn tapestry				[I00]
+
+ *
+ */
+
+/*Greek tapestry*/
+			#inventoryTable div.iI41 div.itemTitle:before	{ content: "Greek tapestry - 20% encumbrance"; }
+
+/*French tapestry*/
+			#inventoryTable div.iI42 div.itemTitle:before	{ content: "French tapestry - 20% encumbrance"; }
+
+/*mouldering tapestry*/
+			#inventoryTable div.iI43 div.itemTitle:before	{ content: "Mouldering tapestry - 20% encumbrance"; }
+
+/*faded tapestry*/
+			#inventoryTable div.iI44 div.itemTitle:before	{ content: "Faded tapestry - 20% encumbrance"; }
+
+/*dark tapestry*/
+			#inventoryTable div.iI45 div.itemTitle:before	{ content: "Dark tapestry - 20% encumbrance"; }
+
+/*mediaeval tapestry*/
+			#inventoryTable div.iI46 div.itemTitle:before	{ content: "Mediaeval tapestry - 20% encumbrance"; }
+
+/*unknown decoration*/
+			#inventoryTable div.iI47 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+/*historical tapestry*/
+			#inventoryTable div.iI48 div.itemTitle:before	{ content: "Historical tapestry - 20% encumbrance"; }
+
+/*unknown decoration*/
+			#inventoryTable div.iI49 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+			#inventoryTable div.iI41 div.itemDesc:before, #inventoryTable div.iI42 div.itemDesc:before,
+			#inventoryTable div.iI43 div.itemDesc:before, #inventoryTable div.iI44 div.itemDesc:before,
+			#inventoryTable div.iI45 div.itemDesc:before, #inventoryTable div.iI46 div.itemDesc:before,
+			#inventoryTable div.iI47 div.itemDesc:before, #inventoryTable div.iI48 div.itemDesc:before,
+			#inventoryTable div.iI49 div.itemDesc:before	{ content: "Tapestries may be installed in buildings as a decoration."; }
+
+/*
+ *
+ *	Pottery
+ *
+
+	1. Clay figurine		[I57]
+	2. Cremation urn			[I00]
+	3. Earthenware vase			[I00]
+	4. Grecian urn			[I51]
+	5. Ming vase			[I55]
+	6. Terracotta statue		[I00]
+	7. Terracotta vase		[I52]
+
+	0. Unknown/Unused		[I00]
+	0. Unknown/Unused		[I00]
+
+<option value="I51"> Grecian urn</select>
+<option value="I55"> Ming vase</select>
+ *
+ */
+
+/*Grecian urn*/
+			#inventoryTable div.iI51 div.itemTitle:before	{ content: "Grecian urn - 20% encumbrance"; }
+
+/*terracotta vase*/
+			#inventoryTable div.iI52 div.itemTitle:before	{ content: "Terracotta vase - 20% encumbrance"; }
+
+/*unknown decoration*/
+			#inventoryTable div.iI53 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+/*unknown decoration*/
+			#inventoryTable div.iI54 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+/*Ming vase*/
+			#inventoryTable div.iI55 div.itemTitle:before	{ content: "Ming vase - 20% encumbrance"; }
+
+/*unknown decoration*/
+			#inventoryTable div.iI56 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+/*clay figurine*/
+			#inventoryTable div.iI57 div.itemTitle:before	{ content: "Clay figurine - 20% encumbrance"; }
+
+/*unknown decoration*/
+			#inventoryTable div.iI58 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+/*unknown decoration*/
+			#inventoryTable div.iI59 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+			#inventoryTable div.iI51 div.itemDesc:before, #inventoryTable div.iI52 div.itemDesc:before,
+			#inventoryTable div.iI53 div.itemDesc:before, #inventoryTable div.iI54 div.itemDesc:before,
+			#inventoryTable div.iI55 div.itemDesc:before, #inventoryTable div.iI56 div.itemDesc:before,
+			#inventoryTable div.iI57 div.itemDesc:before, #inventoryTable div.iI58 div.itemDesc:before,
+			#inventoryTable div.iI59 div.itemDesc:before	{ content: "Pottery may be installed in buildings as a decoration."; }
+
+
+/*
+ *
+ *	Paintings
+ *
+
+	1. Abstract painting		[I62]
+	2. African painting			[I65]
+	3. Conceptual painting		[I67]
+	4. Contemporary painting	[I66]
+	5. Cubist painting			[I61]
+	6. European painting		[I64]
+	7. Fire-damaged painting	[I68]
+	8. Torn painting				?[I69]?
+
+	0. Unknown/Unused			[I63]
+
+ *
+ */
+
+/*cubist painting*/
+			#inventoryTable div.iI61 div.itemTitle:before	{ content: "Cubist painting - 20% encumbrance"; }
+
+/*abstract painting*/
+			#inventoryTable div.iI62 div.itemTitle:before	{ content: "Abstract painting - 20% encumbrance"; }
+
+/*Contemporary painting*/
+			#inventoryTable div.iI63 div.itemTitle:before	{ content: "Contemporary painting - 20% encumbrance"; }
+
+/*European painting*/
+			#inventoryTable div.iI64 div.itemTitle:before	{ content: "European painting - 20% encumbrance"; }
+
+/*African painting*/
+			#inventoryTable div.iI65 div.itemTitle:before	{ content: "African painting - 20% encumbrance"; }
+
+/*unknown decoration*/
+			#inventoryTable div.iI66 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+/*conceptual painting*/
+			#inventoryTable div.iI67 div.itemTitle:before	{ content: "Conceptual painting - 20% encumbrance"; }
+
+/*fire-damaged painting*/
+			#inventoryTable div.iI68 div.itemTitle:before	{ content: "Fire-damaged painting - 20% encumbrance"; }
+
+/*Torn painting*/
+			#inventoryTable div.iI69 div.itemTitle:before	{ content: "Torn painting - 20% encumbrance"; }
+
+			#inventoryTable div.iI61 div.itemDesc:before, #inventoryTable div.iI62 div.itemDesc:before,
+			#inventoryTable div.iI63 div.itemDesc:before, #inventoryTable div.iI64 div.itemDesc:before,
+			#inventoryTable div.iI65 div.itemDesc:before, #inventoryTable div.iI66 div.itemDesc:before,
+			#inventoryTable div.iI67 div.itemDesc:before, #inventoryTable div.iI68 div.itemDesc:before,
+			#inventoryTable div.iI69 div.itemDesc:before	{ content: "Paintings may be installed in buildings as a decoration."; }
+
+
+/*
+ *
+ *	Glass
+ *
+
+	1. Antique mirror			[I74]
+	2. Blown-glass sculpture	[I75]
+	3. Glass bowl				[I72]
+	4. Glass globe				[I76]
+	5. Glass statue				[I73]
+	6. Glass table					?[I77]?
+	7. Glass vase				[I71]
+
+	0. Unknown/Unused			[I78]
+	0. Unknown/Unused			[I79]
+ *
+ */
+
+/*glass vase*/
+			#inventoryTable div.iI71 div.itemTitle:before	{ content: "Glass vase - 20% encumbrance"; }
+
+/*glass bowl*/
+			#inventoryTable div.iI72 div.itemTitle:before	{ content: "Glass bowl - 20% encumbrance"; }
+
+/*glass statue*/
+			#inventoryTable div.iI73 div.itemTitle:before	{ content: "Glass statue - 20% encumbrance"; }
+
+/*Antique mirror*/
+			#inventoryTable div.iI74 div.itemTitle:before	{ content: "Antique mirror - 20% encumbrance"; }
+
+/*blown-glass sculpture*/
+			#inventoryTable div.iI75 div.itemTitle:before	{ content: "Blown-glass sculpture - 20% encumbrance"; }
+
+/*glass globe*/
+			#inventoryTable div.iI76 div.itemTitle:before	{ content: "Glass globe - 20% encumbrance"; }
+
+/*glass table*/
+			#inventoryTable div.iI77 div.itemTitle:before	{ content: "Glass table - 20% encumbrance"; }
+
+/*unknown decoration*/
+			#inventoryTable div.iI78 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+/*unknown decoration*/
+			#inventoryTable div.iI79 div.itemTitle:before	{ content: "Museum piece - 20% encumbrance"; }
+
+			#inventoryTable div.iI71 div.itemDesc:before, #inventoryTable div.iI72 div.itemDesc:before,
+			#inventoryTable div.iI73 div.itemDesc:before, #inventoryTable div.iI74 div.itemDesc:before,
+			#inventoryTable div.iI75 div.itemDesc:before, #inventoryTable div.iI76 div.itemDesc:before,
+			#inventoryTable div.iI77 div.itemDesc:before, #inventoryTable div.iI78 div.itemDesc:before,
+			#inventoryTable div.iI79 div.itemDesc:before	{ content: "Glass items may be installed in buildings as a decoration."; }
+
+/*
+ *
+ *	Melee Weapons
+ *
+	Pool Cue		[D1]
+	Cricket Bat		[D2]
+	Fencing Foil	[D3]
+	Ski Pole		[D4]
+	Tennis Racket	[D5]
+	Hockey Stick	[D6]
+	Golf Club		[D7]
+ *
+ */
+
+/*Pool Cue*/
+		#inventoryTable div.iD1 input.itemButton		{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/melee.gif'); }
+		#inventoryTable div.iD1 div.itemTitle:before	{ content: "Pool Cue - 4% encumbrance"; }
+		#inventoryTable div.iD1 div.itemDesc:before		{ content: "The pool cue does 2 points of damage on a successful hit. It may splinters and breaks after a few uses. To hit with the fire axe mouse over the target's name and use the context menu."; }
+
+/*Cricket Bat*/
+		#inventoryTable div.iD2 input.itemButton		{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/melee.gif'); }
+		#inventoryTable div.iD2 div.itemTitle:before	{ content: "Cricket Bat - 4% encumbrance"; }
+		#inventoryTable div.iD2 div.itemDesc:before		{ content: "The cricket bat does 3 points of damage on a successful hit. To hit with the cricket bat mouse over the target's name and use the context menu."; }
+
+/*Fencing Foil*/
+		#inventoryTable div.iD3 input.itemButton		{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/melee.gif'); }
+		#inventoryTable div.iD3 div.itemTitle:before	{ content: "Fencing Foil - 4% encumbrance"; }
+		#inventoryTable div.iD3 div.itemDesc:before		{ content: "The fencing foil does 2 points of damage on a successful hit. To hit with the fencing foil mouse over the target's name and use the context menu."; }
+
+/*Ski Pole*/
+		#inventoryTable div.iD4 input.itemButton		{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/melee.gif'); }
+		#inventoryTable div.iD4 div.itemTitle:before	{ content: "Ski Pole - 4% encumbrance"; }
+		#inventoryTable div.iD4 div.itemDesc:before		{ content: "The ski pole does 2 points of damage on a successful hit. To hit with the ski pole mouse over the target's name and use the context menu."; }
+
+/*Tennis Racket*/
+		#inventoryTable div.iD5 input.itemButton		{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/melee.gif'); }
+		#inventoryTable div.iD5 div.itemTitle:before	{ content: "Tennis Racket - 4% encumbrance"; }
+		#inventoryTable div.iD5 div.itemDesc:before		{ content: "The tennis racket does 3 points of damage on a successful hit. To hit with the tennis racket mouse over the target's name and use the context menu."; }
+
+/*Hockey Stick*/
+		#inventoryTable div.iD6 input.itemButton		{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/melee.gif'); }
+		#inventoryTable div.iD6 div.itemTitle:before	{ content: "Hockey Stick - 4% encumbrance"; }
+		#inventoryTable div.iD6 div.itemDesc:before		{ content: "The hockey stick does 2 points of damage on a successful hit. To hit with the hockey stick mouse over the target's name and use the context menu."; }
+
+/*Golf Club*/
+		#inventoryTable div.iD7 input.itemButton		{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/melee.gif'); }
+		#inventoryTable div.iD7 div.itemTitle:before	{ content: "Golf Club - 4% encumbrance"; }
+		#inventoryTable div.iD7 div.itemDesc:before		{ content: "The golf club does 2 points of damage on a successful hit. To hit with the golf club mouse over the target's name and use the context menu."; }
+
+/*Toolbox*/
+		#inventoryTable div.iJ1 input.itemButton		{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/toolbox.gif'); }
+		#inventoryTable div.iJ1 div.itemTitle:before	{ content: "Toolbox - 16% encumbrance"; }
+		#inventoryTable div.iJ1 div.itemDesc:before		{ content: "Used by survivors with the construction skill to repair damaged generators and radio transmitters. A toolbox is also required to rebuild a ruined building. Repairing a radio transmitter, a generator or a ruined building takes 1 AP, gives 1 XP and doesn't use up the toolbox."; }
+
+			#binoculars					{ position: absolute; width: 30px; height: 30px; }
+			#binoculars:hover table				{ display: block; }
+			#binoculars table				{ display: none; position: absolute; left: -11px; top: -11px; border-spacing: 0px; padding: 0px; }
+			#binoculars td					{ border: 1px solid #232; background-color: #454; }
+			#binoculars tr + tr td + td			{ background-color: transparent; }
+			#binoculars tr + tr + tr td, #binoculars tr td + td + td	{ background-color: #454; }
+			#binoculars input				{ background-color: transparent; margin: -1px; width: 15px; height: 15px; border: 0px; }
+			#binoculars input:hover				{ background-color: #898; }
+			input.binocularDnw				{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/arrowNW.gif'); }
+			input.binocularDn				{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/arrowN.gif'); }
+			input.binocularDne				{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/arrowNE.gif'); }
+			input.binocularDw				{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/arrowW.gif'); }
+			input.binocularDe				{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/arrowE.gif'); }
+			input.binocularDsw				{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/arrowSW.gif'); }
+			input.binocularDs				{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/arrowS.gif'); }
+			input.binocularDse				{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/inventory/arrowSE.gif'); }
+
+/******************Map formatting******************/
+/*div containing map*/	div.fm		{ width:300px; position:fixed; z-index:98; top:11px; left:11px; }
+/*suburblink*/		input.sl	{ border:0px; background: transparent; color:#f99; text-decoration:none; font-weight: bold; font-size: medium; }
+
+/*general overlays*/	div.fog, table[class="c fxMap"] div.border	{ width: 300px; height: 300px; margin-right: -300px; margin-bottom: -300px; opacity: 0.3; }
+/*fog overlay*/		div.fog, div.building		{ width: 100px; height: 100px; margin-right: -100px; margin-bottom: -100px; }
+			div.fog	{ background-color: #000000; opacity: 0.5; }
+/*border overlay*/	table[class="c fxMap"] div.border	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/border.gif'); }
+
+/*map cells*/		table[class="c fxMap"] tr + tr td.b, table[class="c bn fxMap"] td, table[class="nt fxMap"] td	{ background-repeat: no-repeat; border: 0px; width: 100px; height: 100px; vertical-align: top !important; }
+/*map buttons*/		table[class="c fxMap"] input.ml, table[class="c fxMap"] input.md, table[class="c fxMap"] input.mr, table[class="c bn fxMap"] input.m, table[class="nt fxMap"] input.m { color: #FFFFFF; background: #223322; opacity: 0.7; width: 98px; padding: 0px; margin: 1px; font-size: x-small; border-width: 0px }
+			table[class="c fxMap"] input.ml { background: #555522; }
+			table[class="c fxMap"] input.mr { background: #000000; color: #FF0000; }
+			table[class="c bn fxMap"]	{ border: 2px solid #232; }
+			table[class="nt fxMap"]	{ border-spacing: 0px;  }
+			table[class="nt fxMap"] td	{ padding: 0px !important; }
+			table[class="nt fxMap"]	tr	{ height: 100px; }
+
+
+
+/* Quick fix for renaming */
+
+/*map cells*/		table[class="c 2"] tr + tr td.b, table[class="c bn 2"] td, table[class="nt 2"] td	{ background-repeat: no-repeat; border: 0px; width: 100px; height: 100px; vertical-align: top !important; }
+/*map buttons*/		table[class="c 2"] input.ml, table[class="c 2"] input.md, table[class="c bn 2"] input.m, table[class="nt 2"] input.m { color: #FFFFFF; background: #223322; opacity: 0.7; width: 98px; padding: 0px; margin: 1px; font-size: x-small; border-width: 0px }
+			table[class="c 2"] input.ml { background: #555522; }
+			table[class="c bn 2"]	{ border: 2px solid #232; }
+			table[class="nt 2"]	{ border-spacing: 0px;  }
+			table[class="nt 2"] td	{ padding: 0px !important; }
+
+/*Lane*/		td.c0 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c0.gif'); }
+/*Street*/		td.c1 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c1.gif'); }
+/*Building*/		td.c2 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c2.gif'); }
+/*Carpark*/		td.c3 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c3.gif'); }
+/*Park*/		td.c4 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c4.gif'); }
+/*Street*/		td.c5 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c5.gif'); }
+/*Mall*/		td.c60 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c60.gif'); }
+			td.c61 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c61.gif'); }
+			td.c62 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c62.gif'); }
+			td.c63 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c63.gif'); }
+/*Church*/		td.c7 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c7.gif'); }
+/*Wasteland*/		td.c8 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c8.gif'); }
+/*Hospital*/		td.c9 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c9.gif'); }
+/*Arms*/		td.c10 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c10.gif'); }
+/*Library*/		td.c11 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c11.gif'); }
+/*Police dept*/		td.c12 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c12.gif'); }
+/*Firestation*/		td.c13 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c13.gif'); }
+/*Cinema*/		td.c14 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c14.gif'); }
+/*Auto repair*/		td.c15 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c15.gif'); }
+/*Stadium*/		td.c160 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c160.gif'); }
+			td.c161 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c161.gif'); }
+			td.c162 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c162.gif'); }
+			td.c163 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c163.gif'); }
+			td.c164 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c164.gif'); }
+/*Tower*/		td.c17 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c17.gif'); }
+/*Factory*/		td.c18 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c18.gif'); }
+/*Powerstation*/	td.c19 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c19.gif'); }
+/*Necrotech building*/	td.c20 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c20.gif'); }
+/*Bank*/		td.c21 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c21.gif'); }
+/*City Zoo*/		td.c22 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c22.gif'); }
+/*Animal Pens*/		td.c23 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c23.gif'); }
+/*Cathedral*/		td.c24 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c24.gif'); }
+/*Mansion*/		td.c250 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c250.gif'); }
+			td.c251 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c251.gif'); }
+			td.c252 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c252.gif'); }
+			td.c253 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c253.gif'); }
+/*notknownyet*/		td.c26 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c26.gif'); }
+/*Club*/		td.c27 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c27.gif'); }
+/*Monument*/		td.c28 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c28.gif'); }
+/*Junkyard*/		td.c29 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c29.gif'); }
+/*Hotel*/		td.c30 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c30.gif'); }
+/*Fort*/		td.c310 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c310.gif'); }
+			td.c311 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c311.gif'); }
+			td.c312 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c312.gif'); }
+			td.c313 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c313.gif'); }
+			td.c314 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c314.gif'); }
+			td.c315 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c315.gif'); }
+			td.c316 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c316.gif'); }
+			td.c317 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c317.gif'); }
+/*Armory*/		td.c32 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c32.gif'); }
+/*lane, alley*/		td.c33 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c33.gif'); }
+/*Museum*/		td.c34 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c34.gif'); }
+/*Railway station*/	td.c35 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c35.gif'); }
+/* School */		td.c36 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c36.gif'); }
+/*Cemetery*/		td.c37 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c37.gif'); }
+/*Warehouse*/		td.c38 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c38.gif'); }
+			td.c200 div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c200.gif'); }
+			td.c div.building	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c1.gif'); }
+			table[class="c fxMap"] > tr + tr > td	{ background-image: url('http://web.archive.org/web/20190409142251im_/chrome://udinvgraphenhance/content/buildings/building_c1.gif'); }
+/*
+     FILE ARCHIVED ON 14:22:51 Apr 09, 2019 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 13:41:09 Jun 17, 2021.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  captures_list: 287.775
+  exclusion.robots: 0.123
+  exclusion.robots.policy: 0.114
+  RedisCDXSource: 0.608
+  esindex: 0.01
+  LoadShardBlock: 263.951 (3)
+  PetaboxLoader3.datanode: 256.997 (4)
+  CDXLines.iter: 20.634 (3)
+  load_resource: 33.873
+  PetaboxLoader3.resolve: 27.886
+*/

@@ -226,7 +226,7 @@ function addBorder() {
 }
 
 function mapScenario() {
-  jack.log("Map scenario");
+  jack.log("Loading settings for the map page...");
 
   document.body.classList.toggle("pretty-map");
   specialBlocks();
@@ -235,7 +235,7 @@ function mapScenario() {
 function profileScenario() {
   jack.log("Loading settings for the profile page...");
 
-  jack.log(getPlayerName());
+  //jack.log(getPlayerName());
 
   let url = new URL(window.location.href);
   let u_id = Number(url.searchParams.get("id"));
@@ -267,6 +267,9 @@ function profileScenario() {
       </ul>
     </div>
   `);
+
+  //hide the bottom nav
+  document.querySelector("a.y[href='map.cgi']").parentElement.style.display = 'none';
 }
 
 (function() {
