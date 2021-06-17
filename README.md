@@ -1,6 +1,6 @@
 
 # urbanfun
-**Urbanfun** is a browser extention bring more funcitonality to [Urbandead](http://urbandead.com).
+**Urbanfun** is a browser extention that intends to bring more funcitonality to [Urbandead](http://urbandead.com).
 
 **WORK IN PROGRESS**
 
