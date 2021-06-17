@@ -4,7 +4,7 @@
   "manifest_version": 2,
   "name": "urbanfun",
   "version": "1.0",
-  "homepage_url": "https://source.dog",
+  "homepage_url": "https://github.com/atomic-addison/urbanfun",
   "icons": {
     "48": "icons/ud.png"
   },
