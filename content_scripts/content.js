@@ -235,7 +235,7 @@ function mapScenario() {
 function profileScenario() {
   jack.log("Loading settings for the profile page...");
 
-  //jack.log(getPlayerName());
+  let viewing = document.querySelector("span.ptt").textContent;
 
   let url = new URL(window.location.href);
   let u_id = Number(url.searchParams.get("id"));
@@ -251,7 +251,9 @@ function profileScenario() {
       </ul>
       <ul class="d-ud__button-menu">
         <li>
-          <a href="contacts.cgi?add=${u_id}" class="d-ud__button">Add to contacts</a>
+          ${viewing==getPlayerName()?`
+            <a href="profile.cgi?mode=edit&id=${u_id}" class="d-ud__button">Settings</a>
+          `:`<a href="contacts.cgi?add=${u_id}" class="d-ud__button">Add to contacts</a>`}
         </li>
       </ul>
       <div class="list-spacer"></div>
