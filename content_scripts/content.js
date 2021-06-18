@@ -207,21 +207,36 @@ function showCoords(coordinates) {
 }
 
 function addBorder() {
-  var coords = getGPS(true);
-  var left = ((coords[0] == 0) ? true : false);
-  var right = ((coords[0] == 99) ? true : false);
-  var top = ((coords[1] == 0) ? true : false);
-  var bottom = ((coords[1] == 99) ? true : false);
+  let coords = getGPS(true);
 
-  var cityRows = document.getElementsByTagName('tr');
-  var newCell;
+  let left = ((coords[0] == 0) ? true : false);
+  let right = ((coords[0] == 99) ? true : false);
+  let top = ((coords[1] == 0) ? true : false);
+  let bottom = ((coords[1] == 99) ? true : false);
 
-  if (left || right) {
-      newCell = cityRows[2].insertCell(left ? 0 : 2);
-      newCell = cityRows[3].insertCell(left ? 0 : 2);
-      if (!top && !bottom) {
-          newCell = cityRows[4].insertCell(left ? 0 : 2);
-      }
+  //needs testing
+
+  let cityRows = document.querySelectorAll("table.c>tbody>tr");
+
+  if (left) for (var i = 1; i < cityRows.length; i++) cityRows[i].insertCell(0);
+  if (right) for (var i = 1; i < cityRows.length; i++) cityRows[i].insertCell(-1);
+  if (bottom) {
+    let newRow = document.querySelector("table.c").insertRow(-1);
+
+    for (var i = 0; i < 3; i++) {
+      let newCell = newRow.insertCell();
+      newCell.className = "b border";
+      newCell.innerHTML = `<input type="submit" class="ml" value="Border">`;
+    }
+  }
+  if (top) {
+    let newRow = document.querySelector("table.c").insertRow(1);
+
+    for (var i = 0; i < 3; i++) {
+      let newCell = newRow.insertCell();
+      newCell.className = "b border";
+      newCell.innerHTML = `<input type="submit" class="ml" value="Border">`;
+    }
   }
 }
 

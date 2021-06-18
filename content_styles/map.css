@@ -358,6 +358,11 @@
 	background-position: -100px -500px;
 }
 
+/* border */
+.pretty-map table.c td.border {
+	background-position: -400px -100px;
+}
+
 /* specials inside overlay */
 
 .pretty-map table.c td.cx16-stadmall *,
