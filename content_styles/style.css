@@ -46,7 +46,7 @@
 }
 
 .list-left {
-  margin-right: auto;
+  margin-right: auto !important;
 }
 
 .list-spacer {

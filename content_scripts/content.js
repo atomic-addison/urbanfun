@@ -247,6 +247,27 @@ function mapScenario() {
   specialBlocks();
 }
 
+function skillsScenario() {
+  jack.log("Loading settings for the skills page...");
+
+  document.body.insertAdjacentHTML('afterbegin', `
+    <div class="d-ud__top">
+      <ul class="d-ud__button-menu list-left">
+        <li>
+          <a href="map.cgi" class="d-ud__button">Back</a>
+        </li>
+      </ul>
+      <div class="list-spacer"></div>
+    </div>
+  `);
+
+  //hide the bottom nav
+  document.querySelectorAll("a.y[href='map.cgi']").forEach(function (e) {
+    if (e.parentElement.nodeName == "P") e.parentElement.style.display = 'none';
+    else e.style.display = 'none';
+  });
+}
+
 function profileScenario() {
   jack.log("Loading settings for the profile page...");
 
@@ -266,10 +287,16 @@ function profileScenario() {
       </ul>
       <ul class="d-ud__button-menu">
         <li>
-          ${viewing==getPlayerName()?`
-            <a href="profile.cgi?mode=edit&id=${u_id}" class="d-ud__button">Settings</a>
-          `:`<a href="contacts.cgi?add=${u_id}" class="d-ud__button">Add to contacts</a>`}
+          <a href="skills.cgi" class="d-ud__button">Skills</a>
         </li>
+        <li>
+          <a href="profile.cgi?mode=edit&id=${u_id}" class="d-ud__button">Settings</a>
+        </li>
+        ${viewing.toLowerCase()!=getPlayerName()?`
+          <li>
+            <a href="contacts.cgi?add=${u_id}" class="d-ud__button">Add to contacts</a>
+          </li>
+        `:``}
       </ul>
       <div class="list-spacer"></div>
       <ul class="d-ud__button-menu">
@@ -296,6 +323,9 @@ function profileScenario() {
       break;
     case '/map.cgi':
       mapScenario();
+      break;
+    case '/skills.cgi':
+      skillsScenario();
       break;
     default:
       jack.log("Fuck knows where the hell we are...");
