@@ -2,8 +2,8 @@
 
   "description": "Urbanfun is a browser extension that intends to bring more funcitonality to Urbandead",
   "manifest_version": 2,
-  "name": "urbanfun",
-  "version": "1.0",
+  "name": "urbanfun 2",
+  "version": "1.2",
   "homepage_url": "https://github.com/atomic-addison/urbanfun",
   "icons": {
     "48": "icons/ud.png"
@@ -18,8 +18,9 @@
         "content_scripts/content.js"
       ],
       "css" : [
-        "content_styles/map.css",
-        "content_styles/style.css"
+        "content_styles/css/legacy.css",
+        "content_styles/css/map.css",
+        "content_styles/css/style.css"
       ]
     }
   ],
