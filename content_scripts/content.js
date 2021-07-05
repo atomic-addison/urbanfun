@@ -243,6 +243,10 @@ function addBorder() {
 function mapScenario() {
   jack.log("Loading settings for the map page...");
 
+  //get player ID for later
+  let user_ID = document.querySelector(".cp .gt a").href.split("id=").pop();
+  localStorage.setItem('user_ID', user_ID);
+
   document.body.classList.toggle("pretty-map");
   specialBlocks();
 }
@@ -250,16 +254,26 @@ function mapScenario() {
 function skillsScenario() {
   jack.log("Loading settings for the skills page...");
 
-  document.body.insertAdjacentHTML('afterbegin', `
-    <div class="d-ud__top">
-      <ul class="d-ud__button-menu list-left">
-        <li>
-          <a href="map.cgi" class="d-ud__button">Back</a>
-        </li>
-      </ul>
-      <div class="list-spacer"></div>
-    </div>
-  `);
+    //get player's ID
+    let user_ID = localStorage.getItem('user_ID');
+
+    document.body.insertAdjacentHTML('afterbegin', `
+      <div class="d-ud__top">
+        <ul class="d-ud__button-menu">
+          <li>
+            <a href="map.cgi" class="d-ud__button">Back to the city</a>
+          </li>
+        </ul>
+        <div class="list-spacer"></div>
+        <ul class="d-ud__button-menu list-left">
+          ${user_ID?`
+            <li>
+              <a href="profile.cgi?mode=edit&id=${user_ID}" class="d-ud__button">Settings</a>
+            </li>
+          `:``}
+        </ul>
+      </div>
+    `);
 
   //hide the bottom nav
   document.querySelectorAll("a.y[href='map.cgi']").forEach(function (e) {
@@ -278,27 +292,35 @@ function profileScenario() {
 
   if (!u_id) return jack.log("What the fuck, where is the ID?");
 
+  //get player's ID
+  let user_ID = localStorage.getItem('user_ID');
+
   document.body.insertAdjacentHTML('afterbegin', `
     <div class="d-ud__top">
-      <ul class="d-ud__button-menu list-left">
+      <ul class="d-ud__button-menu">
         <li>
-          <a href="map.cgi" class="d-ud__button">Back</a>
+          <a href="map.cgi" class="d-ud__button">Back to the city</a>
         </li>
       </ul>
-      <ul class="d-ud__button-menu">
+      <div class="list-spacer"></div>
+      <ul class="d-ud__button-menu list-left">
         <li>
           <a href="skills.cgi" class="d-ud__button">Skills</a>
         </li>
-        <li>
-          <a href="profile.cgi?mode=edit&id=${u_id}" class="d-ud__button">Settings</a>
-        </li>
-        ${viewing.toLowerCase()!=getPlayerName()?`
+        ${user_ID?`
           <li>
-            <a href="contacts.cgi?add=${u_id}" class="d-ud__button">Add to contacts</a>
+            <a href="profile.cgi?mode=edit&id=${user_ID}" class="d-ud__button">Settings</a>
           </li>
         `:``}
       </ul>
-      <div class="list-spacer"></div>
+      ${viewing.toLowerCase()!=getPlayerName()?`
+        <ul class="d-ud__button-menu">
+            <li>
+              <a href="contacts.cgi?add=${u_id}" class="d-ud__button">Add to contacts</a>
+            </li>
+        </ul>
+        <div class="list-spacer"></div>
+      `:``}
       <ul class="d-ud__button-menu">
         ${u_id>0?`
           <li>
