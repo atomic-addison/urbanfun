@@ -1,0 +1,70 @@
+.d-ud {
+  &__top {
+    display: flex;
+    justify-content: flex-end;
+
+    &__list-spacer {
+      position: relative;
+      width: 3px;
+      height: 26px;
+
+      &:before{
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        height: 20px;
+        width: 2px;
+        background: #565;
+      }
+    }
+
+    &__button-menu {
+      display: flex;
+      list-style: none;
+      padding: 0;
+      margin: 0 4px 5px;
+      position: relative;
+
+      li {
+        display: inline-flex;
+        margin: 0 2px;
+
+        &>* {
+          display: inline-flex;
+        }
+
+        &:first-child {
+          margin-left: 0px;
+        }
+
+        &:last-child {
+          margin-right: 0px;
+        }
+      }
+
+      &__button {
+        font-size: smaller;
+        background: #565;
+        padding: 4px;
+        border: 1px #565 outset;
+        color: #f99;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      &.list-left {
+        margin-right: auto !important;
+      }
+
+      &:first-child {
+        margin-left: 0px;
+      }
+
+      &:last-child {
+        margin-right: 0px;
+      }
+    }
+  }
+}

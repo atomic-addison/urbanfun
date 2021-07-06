@@ -1,0 +1,25 @@
+
+/******************Bar Graph Formatting******************/
+/*stat bar table*/	table.stattable, table.stattable table, table.statstable	{ width: 100%; border-spacing: 0px; }
+			table.stattable td, table.statstable td	{ padding: 0px; }
+/*graph BG colors*/	table.stattable table, td.iconCell	{ background-color:#555555; }
+/*icon dimenisions*/	div.staticons, div.staticonbackground	{ width: 13px; height: 13px; border: 1px solid black; }
+			div.staticons	{ position: absolute; }
+/*notch borders*/	div.notchBorders	{ border-bottom: solid 1px black; border-right: solid 1px black; border-top: solid 1px black; }
+/*notch backgrounds*/	div.barBackground	{ width:100%; height:7px; }
+/*item labels*/		table.stattable span	{ position: relative; bottom: 5px; left: 9px; margin-right: -20px; }
+			table.stattable span.highlight	{ color: #FF9999; }
+			table.stattable span	{ font-size:x-small; color:#fff; text-decoration:none; background:#555; border:1px solid #000; padding:0px 3px; }
+
+
+
+/*Stat icons & colors*/	#HPtable div.staticons		{ background-image: url('https://raw.githubusercontent.com/atomic-addison/udtoolbar/main/chrome/udinvgraphenhance/content/staticons/HPIcon.gif'); }
+			#HPDeadtable div.staticons	{ background-image: url('https://raw.githubusercontent.com/atomic-addison/udtoolbar/main/chrome/udinvgraphenhance/content/staticons/HPIconDead.gif'); }
+			#HPInfectedtable div.staticons	{ background-image: url('https://raw.githubusercontent.com/atomic-addison/udtoolbar/main/chrome/udinvgraphenhance/content/staticons/HPIconInfected.gif'); }
+			#HPtable div.staticonbackground, #HPtable div.barBackground, #HPDeadtable div.staticonbackground, #HPDeadtable div.barBackground, #HPInfectedtable div.staticonbackground, #HPInfectedtable div.barBackground	{ background-color: #CC0000; }
+			#APtable div.staticons		{ background-image: url('https://raw.githubusercontent.com/atomic-addison/udtoolbar/main/chrome/udinvgraphenhance/content/staticons/APIcon.gif'); }
+			#APtable div.staticonbackground, #APtable div.barBackground	{ background-color: #00CC00; }
+			#XPtable div.staticons		{ background-image: url('https://raw.githubusercontent.com/atomic-addison/udtoolbar/main/chrome/udinvgraphenhance/content/staticons/XPIcon.gif'); }
+			#XPtable div.staticonbackground, #XPtable div.barBackground	{ background-color: #0000CC; }
+			#INVtable div.staticons		{ background-image: url('https://raw.githubusercontent.com/atomic-addison/udtoolbar/main/chrome/udinvgraphenhance/content/staticons/INVIcon.gif'); }
+			#INVtable div.staticonbackground, #INVtable div.barBackground	{ background-color: #CCCC00; }

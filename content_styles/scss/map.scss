@@ -1,0 +1,447 @@
+.pretty-map {
+  table {
+    &.c {
+      input {
+        /* base styles for all block names */
+        &.md,
+        &.ml,
+        &.mrl,
+        &.mr {
+            border:0px;
+            padding:2px 4px;
+            opacity: 0.8;
+            font-size:70%;
+            line-height:1;
+            cursor: pointer;
+        }
+      }
+
+      tbody {
+        &>tr {
+          /* sprite background */
+          &:not(:first-child)>td {
+          	background-image: url('https://raw.githubusercontent.com/atomic-addison/urbanfun/main/images/building_sprites-min.png');
+          }
+          /* override background on sleep screen */
+          &>td[height="300"] {
+          	width: 300px;
+          	height: 300px;
+          	background-image: unset;
+          	color: #fff;
+          	background:
+          		linear-gradient( rgba(0, 0, 0, 0.7) 100%, rgba(0, 0, 0, 0.7) 100%),
+          		url('https://raw.githubusercontent.com/atomic-addison/urbanfun/main/images/building_sprites-min.png');
+          	background-position: -100px -100px;
+          }
+        }
+      }
+
+      td {
+        /* coordinate styling */
+        &.sb {
+          position: relative;
+
+          .block_coordinates {
+            position: absolute;
+            font-size: smaller;
+            top: 2px;
+            right: 4px;
+          }
+        }
+
+        /* base styles for all blocks */
+        &.b {
+        	height:100px;
+        	width:100px;
+        	min-height: 100px;
+        	max-height: 100px;
+        	min-width: 100px;
+        	max-width: 100px;
+        	vertical-align: top;
+        	padding:0px;
+        	margin:0px;
+        	border:0px;
+        	overflow: hidden;
+        	background-repeat: no-repeat;
+        }
+
+        /* cx inside, cxr ruined, cxd dark */
+        &.cx,
+        &.cxr,
+        &.cxd {
+        	background-position: -0px -0px;
+        }
+
+        /* c0 lane */
+        &.c0 {
+        	background-position: -100px -0px;
+        }
+
+        /* c1 c5 street */
+        &.c1,
+        &.c5 {
+        	background-position: -0px -100px;
+        }
+
+        /* c2 building */
+        &.c2 {
+        	background-position: -100px -100px;
+        }
+
+        /* c3 carpark */
+        &.c3 {
+        	background-position: -200px -0px;
+        }
+
+        /* c4 park */
+        &.c4 {
+        	background-position: -200px -100px;
+        }
+
+        /* c6 mall */
+        &.c6-nw {
+        	background-position: -200px -500px;
+        }
+
+        &.c6-ne {
+        	background-position: -300px -500px;
+        }
+
+        &.c6-sw {
+        	background-position: -400px -500px;
+        }
+
+        &.c6-se {
+        	background-position: -500px -500px;
+        }
+
+        /* c6 mall-special-inside */
+        &.cx6-nw {
+        	background-position: -200px -500px;
+        	position: relative;
+        }
+
+        &.cx6-ne {
+        	background-position: -300px -500px;
+        	position: relative;
+        }
+
+        &.cx6-sw {
+        	background-position: -400px -500px;
+        	position: relative;
+        }
+
+        &.cx6-se {
+        	background-position: -500px -500px;
+        	position: relative;
+        }
+
+        /* c7 church */
+        &.c7 {
+        	background-position: -0 -200px;
+        }
+
+        /* c8 wasteland */
+        &.c8 {
+        	background-position: -100px -200px;
+        }
+
+        /* c9 hospital */
+        &.c9 {
+        	background-position: -200px -200px;
+        }
+
+        /* c10 arms */
+        &.c10 {
+        	background-position: -300px -0;
+        }
+
+        /* c11 library */
+        &.c11 {
+        	background-position: -300px -100px;
+        }
+
+        /* c12 police dept */
+        &.c12 {
+        	background-position: -300px -200px;
+        }
+
+        /* c13 fire station */
+        &.c13 {
+        	background-position: -0 -300px;
+        }
+
+        /* c14 cinema */
+        &.c14 {
+        	background-position: -100px -300px;
+        }
+
+        /* c15 auto repair */
+        &.c15 {
+        	background-position: -200px -300px;
+        }
+
+        /* c16 stadium */
+        &.c16-nw {
+        	background-position: -600px -0;
+        }
+
+        &.c16-ne {
+        	background-position: -600px -100px;
+        }
+
+        &c16-sw {
+        	background-position: -600px -200px;
+        }
+
+        &.c16-se {
+        	background-position: -600px -300px;
+        }
+
+        /* c16 stadium-special-inside */
+        &.cx16-nw {
+        	background-position: -600px -0;
+        	position: relative;
+        }
+
+        &.cx16-ne {
+        	background-position: -600px -100px;
+        	position: relative;
+        }
+
+        &.cx16-sw {
+        	background-position: -600px -200px;
+        	position: relative;
+        }
+
+        &.cx16-se {
+        	background-position: -600px -300px;
+        	position: relative;
+        }
+
+        /* c16+6 [52,81] stadium mall */
+        &.c16-stadmall {
+        	background-position: -600px -400px;
+        }
+
+        /* c16 stadmall-special-inside */
+        &.cx16-stadmall {
+        	background-position: -600px -400px;
+        	position: relative;
+        }
+
+        /* c17 tower */
+        &.c17 {
+        	background-position: -300px -300px;
+        }
+
+        /* c18 factory */
+        &.c18 {
+        	background-position: -400px -0;
+        }
+
+        /* X c19 power station */
+        &.c19 {
+        	background-position: -400px -100px;
+        }
+
+        /* c20 necrotech */
+        &.c20 {
+        	background-position: -400px -200px;
+        }
+
+        /* c21 bank */
+        &.c21 {
+        	background-position: -400px -300px;
+        }
+
+        /* c22 city zoo */
+        &.c22 {
+        	background-position: -0 -400px;
+        }
+
+        /* X c23 animal pens */
+        &.c23 {
+        	background-position: -400px -100px;
+        }
+
+        /* c25 mansion */
+        &.c25-nw {
+        	background-position: -0 -600px;
+        }
+
+        &.c25-ne {
+        	background-position: -100px -600px;
+        }
+
+        &.c25-sw {
+        	background-position: -200px -600px;
+        }
+
+        &.c25-se {
+        	background-position: -300px -600px;
+        }
+
+        /* c25 mansion-special-inside */
+        &.cx25-nw {
+        	background-position: -0 -600px;
+        	position: relative;
+        }
+
+        &.cx25-ne {
+        	background-position: -100px -600px;
+        	position: relative;
+        }
+
+        &.cx25-sw {
+        	background-position: -200px -600px;
+        	position: relative;
+        }
+
+        &.cx25-se {
+        	background-position: -300px -600px;
+        	position: relative;
+        }
+
+        /* c27 club */
+        &.c27,
+        &.c27b {
+        	background-position: -100px -400px;
+        }
+
+        /* c28 monument */
+        &.c28 {
+        	background-position: -200px -400px;
+        }
+
+        /* c29 junkyard */
+        &.c29 {
+        	background-position: -300px -400px;
+        }
+
+        /* c30 hotel */
+        &.c30 {
+        	background-position: -400px -400px;
+        }
+
+        /* c31 fort */
+        &.c310 {
+        	background-position: -400px -600px;;
+        }
+
+        &.c311 {
+        	background-position: -500px -600px;
+        }
+
+        &.c312 {
+        	background-position: -600px -600px;
+        }
+
+        &.c313 {
+        	background-position: -700px -0;
+        }
+
+        &.c314 {
+        	background-position: -700px -100px;
+        }
+
+        &.c315 {
+        	background-position: -700px -200px;
+        }
+
+        &.c316 {
+        	background-position: -700px -300px;
+        }
+
+        &.c317 {
+        	background-position: -700px -400px;
+        }
+
+        /* c32 armoury */
+        &.c32 {
+        	background-position: -500px -0;
+        }
+
+        /* c33 alley */
+        &.c33 {
+        	background-position: -500px -100px;
+        }
+
+        /* c34 museum */
+        &.c34 {
+        	background-position: -500px -200px;
+        }
+
+        /* c35 railway station */
+        &.c35 {
+        	background-position: -500px -300px;
+        }
+
+        /* c36 school */
+        &.c36 {
+        	background-position: -500px -400px;
+        }
+
+        /* c37 cemetery */
+        &.c37 {
+        	background-position: -0 -500px;
+        }
+
+        /* c38 warehouse */
+        &.c38 {
+        	background-position: -100px -500px;
+        }
+
+        /* border */
+        &.border {
+        	background-position: -400px -100px;
+        }
+
+        /* specials inside overlay */
+
+        &.cx16-stadmall *,
+        &.cx16-nw *,
+        &.cx16-ne *,
+        &.cx16-sw *,
+        &.cx16-se *,
+        &.cx25-nw *,
+        &.cx25-ne *,
+        &.cx25-sw *,
+        &.cx25-se *,
+        &.cx6-nw *,
+        &.cx6-ne *,
+        &.cx6-sw *,
+        &.cx6-se * {
+        	position: relative;
+        	z-index: 2;
+        }
+
+        &.cx16-stadmall:before,
+        &.cx16-nw:before,
+        &.cx16-ne:before,
+        &.cx16-sw:before,
+        &.cx16-se:before,
+        &.cx25-nw:before,
+        &.cx25-ne:before,
+        &.cx25-sw:before,
+        &.cx25-se:before,
+        &.cx6-nw:before,
+        &.cx6-ne:before,
+        &.cx6-sw:before,
+        &.cx6-se:before{
+        	content: "";
+        	background-image: url('https://raw.githubusercontent.com/atomic-addison/urbanfun/main/images/building_sprites-min.png');
+        	opacity: 0.7;
+        	display: inline-block;
+        	position: absolute;
+        	left: 0;
+        	right: 0;
+        	bottom: 0;
+        	top: 0;
+        	z-index: 1;
+        	background-position: -0px -0px;
+        }
+      }
+    }
+  }
+}
