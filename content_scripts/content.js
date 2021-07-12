@@ -292,7 +292,7 @@
     			statsCell.innerHTML = '<span>' + value + '</span>';
 
     		return barTable;
-    	}catch(err){err = "graphicalStats:"+err; /*alert(err);*/}
+    	}catch(err){err = "graphicalStats:"+err; c.log(err);}
     }
     graphicalStats(){
     	try{
@@ -350,6 +350,425 @@
     	}
       catch(err) {
         err = "graphicalStats: "+err;
+        c.log(err);
+      }
+    }
+    makeItem(item){
+    	// Main container for item
+    	var container = this.doc.createElement("DIV");
+
+    	// Sub container for button, drop button and span
+    	var subContainer = this.doc.createElement("DIV");
+
+
+    	// Main button
+    	var itemForm = this.doc.createElement("FORM");
+    	itemForm.setAttribute("method", "post");
+
+    	var itemButton = this.doc.createElement("INPUT");
+    	itemButton.className = "itemButton";
+    	itemButton.value = "";
+    	itemButton.setAttribute("type", "submit");
+    	itemForm.appendChild(itemButton);
+
+
+    	// Drop button for item
+    	var dropForm = this.doc.createElement("FORM");
+    	dropForm.action = "map.cgi";
+    	dropForm.setAttribute("method", "post");
+
+    	var dropButton = this.doc.createElement("INPUT");
+    	dropButton.value = "";
+    	dropButton.className = "dropButton";
+    	dropButton.setAttribute("type", "submit");
+
+    	var dropItem = this.doc.createElement("INPUT");
+    	dropItem.setAttribute("name", "drop");
+      c.log("TEST!!", item);
+    	dropItem.value = item.replace(/\./, "");
+    	dropItem.setAttribute("type", "hidden");
+
+    	dropForm.appendChild(dropButton);
+    	dropForm.appendChild(dropItem);
+
+    	subContainer.appendChild(itemForm);
+    	subContainer.appendChild(dropForm);
+
+    	// Title/Description for item
+    	var itemInfo = this.doc.createElement("DIV");
+    	itemInfo.className = "itemInfo";
+
+    	var title = this.doc.createElement("DIV");
+    	title.className = "itemTitle";
+
+    	var description = this.doc.createElement("DIV");
+    	description.className = "itemDesc";
+
+    	itemInfo.appendChild(title);
+    	itemInfo.appendChild(description);
+
+    	container.appendChild(itemInfo);
+    	container.appendChild(subContainer);
+
+    	var itemType = item.substr(0, 1); //Item type for use command is first letter
+
+    //Max
+    	// decorations and toolbox need to the whole item string appended to use-
+    	if ( item.indexOf("D") > -1 ||  item.indexOf("I") > -1 || item.indexOf("J") > -1 )
+    		itemForm.action = "map.cgi?use-" + item;
+    	else
+    		itemForm.action = "map.cgi?use-" + itemType;
+
+    	var ammoCount = item.substr(1, item.length - 1); //Ammo count if available, remaining portion of the string
+
+    	// decorations and toolbox need to have the ammoCount wiped off.
+    	if ( item.indexOf("D") > -1 || item.indexOf("I") > -1 || item.indexOf("J") > -1 ) ammoCount = null;
+
+    	if (itemType != itemType.toLowerCase())
+    		itemType = itemType + itemType; //To distinguish "A" from "a" in the CSS since the doctype used by UD makes the CSS case insensitive
+
+    	// decorations and toolbox can use the whole item string for the class name
+    	if ( item.indexOf("D") > -1 || item.indexOf("I") > -1 || item.indexOf("J") > -1 )
+    		container.className = "i" + item;
+    	else
+    		container.className = "i" + itemType;
+    //Max
+
+    	if (ammoCount)
+    	{
+    		if (ammoCount.length > 2) //Radio frequency rather than firearm ammo
+    		{
+    			var radioInput = this.doc.createElement("INPUT"); //Radios use an extra input for frequency
+    			radioInput.setAttribute("type", "hidden");
+    			radioInput.setAttribute("name", "freq");
+    			radioInput.setAttribute("value", item.substr(1, item.length - 1).replace(/\./, ""));
+    			itemForm.appendChild(radioInput);
+    		}
+    		var ammoCountSpan = this.doc.createElement("SPAN");
+    		ammoCountSpan.className = "ammoCount";
+    		ammoCountSpan.innerHTML = ammoCount;
+    		subContainer.appendChild(ammoCountSpan);
+    	}
+
+    	return container;
+    }
+    itemPriority(itemType){
+    	if (itemType == "b6") //Pistols
+    		return 0;
+    	if (itemType == "b5")
+    		return 1;
+    	if (itemType == "b4")
+    		return 2;
+    	if (itemType == "b3")
+    		return 3;
+    	if (itemType == "b2")
+    		return 4;
+    	if (itemType == "b1")
+    		return 5;
+    	if (itemType == "b0")
+    		return 6;
+    	if (itemType == "s2") //Shotguns
+    		return 7;
+    	if (itemType == "s1")
+    		return 8;
+    	if (itemType == "s0")
+    		return 9;
+    	if (itemType.indexOf("B") > -1) //Handheld Radio, I've placed it high on the priority list to prevent problems with table cell stretching
+    		return 10;
+    	if (itemType == "c") //Flare guns
+    		return 11;
+    	if (itemType == "k") //Pistol Clips
+    		return 12;
+    	if (itemType == "r") //Shotgun shells
+    		return 13;
+    	if (itemType == "o") //Fire axes
+    		return 14;
+    	if (itemType == "d") //Crowbars
+    		return 15;
+    	if (itemType == "e") //Baseball bats
+    		return 16;
+    	if (itemType == "p") //Length of pipes
+    		return 17;
+    	if (itemType == "g") //Kitchen knifes
+    		return 18;
+    	if (itemType == "h") //FAKs
+    		return 19;
+    	if (itemType == "z") //Syringes
+    		return 20;
+    	if (itemType == "w") //Extractors
+    		return 21;
+    	if (itemType == "f") //Flak jackets
+    		return 22;
+    	if (itemType == "F") //Binoculars
+    		return 23;
+    	if (itemType == "C") //Radio Transmitter
+    		return 24;
+    	if (itemType == "a") //GPS units
+    		return 25;
+    	if (itemType == "j") //Mobile phones
+    		return 26;
+    	if (itemType == "A") //Portable generators
+    		return 27;
+    	if (itemType == "i") //fuel cans
+    		return 28;
+    	if (itemType == "q") //wire cutters
+    		return 29;
+    	if (itemType == "x") //Spray cans
+    		return 30;
+    	if (itemType == "t") //beers
+    		return 31;
+    	if (itemType == "u") //wine bottles
+    		return 32;
+    	if (itemType == "l") //books
+    		return 33;
+    	if (itemType == "y") //poetry books
+    		return 34;
+    	if (itemType == "n") //newspapers
+    		return 35;
+    	if (itemType == "m") //crucifixes
+    		return 36;
+    	return 37; // In case I missed something
+    }
+    inventorySort(items){
+    	var j;
+    	var index;
+    	for (var i = 0; i < items.length; i++)
+    	{
+    		index = items[i];
+    		j = i;
+    		while ((j > 0) && (this.itemPriority(items[j-1]) > this.itemPriority(index)))
+    		{
+    			items[j] = items[j-1];
+    			j = j - 1;
+    		}
+    		items[j] = index;
+    	}
+    }
+    inventory(isInventoryOpen) {
+      c.log("Hi!")
+    	try{
+    		var forms = this.doc.getElementsByTagName("form");
+    		var itemType = new String();
+    		var items = new Array();
+
+    		var length = this.actionForms.length;
+    		for (var i = 0; i < length; i++)
+    		{
+    //Max
+    //			if (actionForms[i].action.search(/map\.cgi\?use\-[A-Za-z]/) > -1)
+    //			{
+    //				itemType = actionForms[i].action.match(/map\.cgi\?use\-(\w)/)[1];
+    			if (this.actionForms[i].action.search(/map\.cgi\?use\-[A-Za-z1-9]+/) > -1)
+    			{
+    				itemType = this.actionForms[i].action.match(/map\.cgi\?use\-([\w\d]+)/)[1];
+    //Max
+
+    				if (itemType == "b" || itemType == "s" || itemType == "B")
+    				{
+    					itemType += this.actionForms[i].innerHTML.match(/(\d+\.)?\d+/)[0];
+    				}
+    				if (itemType == "F" && this.actionForms[i].getElementsByTagName("select").length > 0)
+    				{
+    					addBinoculars(this.doc, this.cityCells);
+    				}
+    				items.push(itemType);
+    			}
+    		}
+
+    		this.inventorySort(items); //Sort items
+
+    		var inventoryRow = new Array();
+    		var inventoryCell = new Array();
+    		var ammoCount = new String();
+    		var pistolAmmo = 0;
+    		var shotgunAmmo = 0;
+    		var pistolClips = 0;
+    		var shotgunShells = 0;
+    		var FAKS = 0;
+    		var syringes = 0;
+    		var width = 10;
+    		var index = -1;
+    		var offset = 0;
+    		var j = 0;
+
+    		var inventoryTable = this.doc.createElement("TABLE");
+    		inventoryTable.className = "inventory";
+    		inventoryTable.id = "inventoryTable";
+
+    		for (var i = 0; i+offset < 60 || i < items.length; i++) //Loop to construct table
+    		{
+    			if ((i+offset) % width == 0)
+    			{
+    				index++;
+    				inventoryRow[index] = inventoryTable.insertRow(index);
+    				j = 0;
+    			}
+
+    			inventoryCell[i] = inventoryRow[index].insertCell(j);
+    			j++;
+    			if (i < items.length)
+    			{
+    				if (items[i].indexOf("B") > -1 && (i + offset) % 10 > 5) //Shift the radios so they don't screw up the table
+    				{
+    					for (var k = i+1; k < items.length; k++)
+    					{
+    						if ( items[k].indexOf("B") < 0 ) //Look for an item which isn't a radio
+    						{
+    							itemType = items[k]; //Swap items
+    							items[k] = items[i];
+    							items[i] = itemType;
+    							break;
+    						}
+    					}
+    				}
+
+    				inventoryCell[i].className = "item";
+    				inventoryCell[i].appendChild(this.makeItem(items[i])); //Create and append item to cell
+
+    				if (items[i].search(/[bskrhzB]/) > -1) //Find important items, store item/ammo counts
+    				{
+    					if (items[i].indexOf("b") > -1 || items[i].indexOf("s") > -1)
+    					{
+    						itemType = items[i].substr(0, 1); //Item type
+    						ammoCount = items[i].substr(1, 1); //Ammo count
+    						inventoryCell[i].setAttribute("colspan", "2");
+    						offset+=1;
+    						if (items[i].indexOf("b") > -1)
+    							pistolAmmo += parseInt(ammoCount);
+    						else
+    							shotgunAmmo += parseInt(ammoCount);
+    					} else
+    					if (items[i] == "k")
+    					{
+    						pistolClips++;
+    					} else
+    					if (items[i] == "r")
+    					{
+    						shotgunShells++;
+    					} else
+    					if (items[i] == "h")
+    					{
+    						FAKS++;
+    					} else
+    					if (items[i] == "z")
+    					{
+    						syringes++;
+    					} else
+    					if (items[i].indexOf("B") > -1)
+    					{
+    						inventoryCell[i].setAttribute("colspan", "5");
+    						offset+=4;
+    					}
+    				}
+    			} else {
+    				inventoryCell[i].innerHTML = "&nbsp;";
+    				if (i + offset >= 51)
+    				{
+    					inventoryCell[i].className = "itotal";
+    				}
+    			}
+    		}
+
+    		inventoryCell[i-1].innerHTML = "<span>" + (items.length + offset) + "/51</span>";
+
+    		var summaryTable = this.doc.createElement("table");
+    		summaryTable.className = "inventory";
+    		summaryTable.id = "inventoryBar";
+
+    		var summaryRow = summaryTable.insertRow(0);
+    		var summaryCell = new Array();
+
+    		summaryCell[0] = summaryRow.insertCell(0);
+    		summaryCell[0].className = "item";
+    		summaryCell[0].appendChild(this.makeItem("b"+pistolAmmo));
+    		summaryCell[1] = summaryRow.insertCell(1);
+    		summaryCell[1].className = "item";
+    		summaryCell[1].appendChild(this.makeItem("s"+shotgunAmmo));
+    		summaryCell[2] = summaryRow.insertCell(2);
+    		summaryCell[2].className = "item";
+    		summaryCell[2].appendChild(this.makeItem("k"+pistolClips));
+    		summaryCell[3] = summaryRow.insertCell(3);
+    		summaryCell[3].className = "item";
+    		summaryCell[3].appendChild(this.makeItem("r"+shotgunShells));
+    		summaryCell[4] = summaryRow.insertCell(4);
+    		summaryCell[4].className = "item";
+    		summaryCell[4].appendChild(this.makeItem("h"+FAKS));
+    		summaryCell[5] = summaryRow.insertCell(5);
+    		summaryCell[5].className = "item";
+    		summaryCell[5].appendChild(this.makeItem("z"+syringes));
+
+    		var container = this.doc.createElement("DIV");
+
+    		var carrot = this.doc.createElement("DIV");
+    		carrot.id = "invCarrot";
+        /*
+        function (),
+        */
+    		carrot.addEventListener('click', function () {
+          try{
+            var child = this.parentNode.getElementsByTagName("TABLE")[0];
+
+            if (child.style.display == "none")
+            {
+              child.style.display = "table";
+              this.className = "carrotOpen";
+
+            } else
+            {
+              child.style.display = "none";
+              this.className = "carrotClosed";
+            }
+          }
+          catch(err){
+            err = "Error displaying names "+err;
+            c.log(err);
+          }
+        }, false);
+
+    		container.appendChild(carrot);
+    		container.appendChild(inventoryTable);
+
+    		//summaryCell[6] = summaryRow.insertCell(6);
+    		//summaryCell[6].appendChild(carrot);
+    		//summaryCell[6].appendChild(inventoryTable);
+
+    		if (isInventoryOpen)
+    		{
+    			carrot.className = "carrotOpen";
+    		} else
+    		{
+    			inventoryTable.style.display = "none";
+    			carrot.className = "carrotClosed";
+    		}
+
+    		this.headsUpDisplay.appendChild(summaryTable);
+    		this.headsUpDisplay.appendChild(container);
+    //Max
+    //		headsUpDisplay.appendChild(createBarGraph(doc, "INV", items.length + offset, 51, 51, (items.length + offset > 45) ? true:false));
+
+    		// Encumbrance Scale
+    		var gameText = this.doc.getElementsByClassName("gp", "td")[0];
+    		var ps = gameText.getElementsByTagName("P");
+    		var Cumber = null;
+    		var encumberance = 0;
+    		for (var p = ps.length - 1; p >= 0; p--)
+    		{
+    			Cumber = ps[p].innerHTML.match(/^You are (\d+)\% encumbered.$/); // You are 60% encumbered.
+    			if (Cumber)
+    			{
+    				encumberance = parseInt(Cumber[1]);
+
+    				gameText.removeChild(ps[p]);
+
+    				break;
+    			}
+    		}
+    		this.headsUpDisplay.appendChild(this.createBarGraph("INV", encumberance, 120, 60, (encumberance > 88) ? true:false));
+    //Max
+
+    	}
+      catch(err){
+        err = "Error constructing inventory " + err;
         c.log(err);
       }
     }
@@ -411,6 +830,11 @@
       this.headsUpDisplay = this.leftCell.getElementsByClassName("gt", "p")[0];
       this.isDead = ((this.headsUpDisplay.innerHTML.search(/you are <b>dead<\/b>/) > -1) ?1:0);
       this.cityCells = this.cityMap.getElementsByTagName("td");
+      this.gameText = document.getElementsByClassName("gp", "td")[0];
+			this.actionForms = this.gameText.getElementsByClassName("a", "form");
+
+      let isinvCarrotOpen = false;
+
       this.showGPS = true;
 
       //get player ID for later
@@ -424,6 +848,14 @@
 
       //enable graphical stats
       this.graphicalStats();
+
+      c.log("Loading inventory...");
+      try {
+        this.inventory(isinvCarrotOpen);
+      }
+      catch(e) {
+        c.log(e);
+      }
     }
     skillsScenario() {
       c.log("Loading settings for the skills page...");

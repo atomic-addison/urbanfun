@@ -19,6 +19,7 @@
       ],
       "css" : [
         "content_styles/css/legacy.css",
+        "content_styles/css/temp.css",
         "content_styles/css/map.css",
         "content_styles/css/style.css"
       ]
