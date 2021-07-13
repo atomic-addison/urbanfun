@@ -773,12 +773,24 @@
       }
     }
     drawHeader(page) {
-      let viewing = document.querySelector("span.ptt").textContent || NULL;
+      c.log("Drawing header on the " + page + " page.");
+
+      let viewing;
+
+      try{
+        viewing = document.querySelector("span.ptt").textContent;
+      }
+      catch(e) {
+        viewing = false;
+      }
 
       let url = new URL(window.location.href);
 
       //get the id of the player being viewed
-      let u_id = Number(url.searchParams.get("id"));
+      let u_id;
+
+      if (url.searchParams.get("id")!=null) u_id = Number(url.searchParams.get("id"));
+      else u_id = null;
 
       //get player's ID
       let user_ID = localStorage.getItem('user_ID');
@@ -801,7 +813,7 @@
               </li>
             `:``}
           </ul>
-          ${viewing.toLowerCase()!=this.getPlayerName()?`
+          ${viewing&&viewing.toLowerCase()!=this.getPlayerName()?`
             <ul class="d-ud__top__button-menu">
                 <li>
                   <a href="contacts.cgi?add=${u_id}" class="d-ud__top__button-menu__button">Add to contacts</a>
@@ -809,16 +821,18 @@
             </ul>
             <div class="d-ud__top__list-spacer"></div>
           `:``}
-          <ul class="d-ud__top__button-menu">
-            ${u_id>0?`
+          ${u_id!==null?`
+            <ul class="d-ud__top__button-menu">
+              ${u_id>0?`
+                <li>
+                  <a href="profile.cgi?id=${u_id - 1}" class="d-ud__top__button-menu__button">Previous</a>
+                </li>
+              `:''}
               <li>
-                <a href="profile.cgi?id=${u_id - 1}" class="d-ud__top__button-menu__button">Previous</a>
+                <a href="profile.cgi?id=${u_id + 1}" class="d-ud__top__button-menu__button">Next user</a>
               </li>
-            `:''}
-            <li>
-              <a href="profile.cgi?id=${u_id + 1}" class="d-ud__top__button-menu__button">Next user</a>
-            </li>
-          </ul>
+            </ul>
+          `:``}
         </div>
       `);
     }
@@ -857,7 +871,7 @@
         c.log(e);
       }
     }
-    skillsScenario() {
+    skillsScenario(page) {
       c.log("Loading settings for the skills page...");
 
       //draw the new, better header
