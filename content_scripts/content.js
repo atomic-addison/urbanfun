@@ -804,12 +804,19 @@
           </ul>
           <div class="d-ud__top__list-spacer"></div>
           <ul class="d-ud__top__button-menu list-left">
-            <li>
-              <a href="skills.cgi" class="d-ud__top__button-menu__button">Skills</a>
-            </li>
+            ${page!="skills.cgi"?`
+              <li>
+                <a href="skills.cgi" class="d-ud__top__button-menu__button">Skills</a>
+              </li>
+            `:``}
             ${user_ID?`
               <li>
                 <a href="profile.cgi?mode=edit&id=${user_ID}" class="d-ud__top__button-menu__button">Settings</a>
+              </li>
+            `:``}
+            ${viewing&&viewing.toLowerCase()!=this.getPlayerName()?`
+              <li>
+                <a href="/profile.cgi?id=${user_ID}" class="d-ud__top__button-menu__button">Profile</a>
               </li>
             `:``}
           </ul>
